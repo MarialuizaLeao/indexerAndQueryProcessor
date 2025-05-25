@@ -1,0 +1,33 @@
+$ python3 indexer.py -m <MEMORY> -c <CORPUS> -i <INDEX>
+with the following arguments:
+• -m <MEMORY>: the memory available to the indexer in megabytes.
+• -c <CORPUS>: the path to the corpus file to be indexed.
+• -i <INDEX>: the path to the directory where indexes should be written.
+
+At the end of the execution, your indexer.py implementation must print a
+JSON document to standard output1 with the following statistics:
+• Index Size, the index size in megabytes;
+• Elapsed Time, the time elapsed (in seconds) to produce the index;
+• Number of Lists, the number of inverted lists in the index;
+• Average List Size, the average number of postings per inverted lists.
+The following example illustrates the required output format:
+{ " Index Size ": 2354 ,
+" Elapsed Time ": 45235 ,
+" Number of Lists ": 437 ,
+" Average List Size ": 23.4 }
+
+
+Document Corpus: 
+> structured representations (with id, title, descriptive text, and keywords) for a total of 4,641,784
+named entities present in Wikipedia.
+
+Indexing Policies:
+> For each document in the corpus (the -c argument above), your implementation must parse, tokenize, and index it.
+> Your implementation must operate within the designated memory budget (the -m argument) during its entire execution.
+> At the end of the execution, a final representation of all produced index structures (inverted index, document index, term lexicon) must be stored as three separate
+files, one for each structure, at the designated directory (the -i argument).
+> Your implementation must perform stopword removal and stemming
+> Your implementation must execute under limited memory availability. To this end, it must be able to produce partial indexes in memory (respecting the imposed
+memory budget) and merge them on disk.
+> You must parallelize the indexing process across multiple threads
+> You may choose to implement a compression scheme for index entries (e.g. gamma for docids, unary for term frequency) for maximum storage efficiency

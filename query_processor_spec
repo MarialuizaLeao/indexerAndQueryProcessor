@@ -1,0 +1,31 @@
+$ python3 processor.py -i <INDEX> -q <QUERIES> -r <RANKER>
+with the following arguments:
+• -i <INDEX>: the path to an index file.
+• -q <QUERIES>: the path to a file with the list of queries to process.
+• -r <RANKER>: a string informing the ranking function (either “TFIDF” or
+“BM25”) to be used to score documents for each query.
+
+After processing each query (the -q argument above), your processor.py
+implementation must print a JSON document to standard output6 with the top
+results retrieved for that query according to the following format:
+• Query, the query text;
+• Results, a list of results.
+Each result in the Results list must be represented with the fields:
+• ID, the respective result ID;
+• Score, the final document score.
+The following example illustrates the required output format for a query:
+{ " Query ": " information retrieval ",
+" Results ": [
+{ "ID": " 0512698 ",
+" Score ": 24.2 },
+{ "ID": " 0249777 ",
+" Score ": 12.4 }, ... ] }
+
+Query Processing Policies
+> For each query in the list provided via the -q argument, your implementation must pre-process the query, retrieve candidate
+documents from the given index (the -i argument), score these documents according to the chosen ranking model (the -r argument), and print the top 10 results using the aforementioned format.
+> Must pre-process queries with stopword removal and stemming. 
+> Your implementation must perform a conjunctive document-at-a-time (DAAT) matching when retrieving candidate documents.
+> Your implementation must provide two scoring functions: TFIDF and BM25.
+> You may parallelize the query processing across multiple threads
+
